@@ -12,10 +12,10 @@ public class JobData {
     private ArrayList<Job> jobs = new ArrayList<>();
     private static JobData instance;
 
-    private JobFieldData<Employer> employers = new JobFieldData<>();
-    private JobFieldData<Location> locations = new JobFieldData<>();
-    private JobFieldData<CoreCompetency> coreCompetencies = new JobFieldData<>();
-    private JobFieldData<PositionType> positionTypes = new JobFieldData<>();
+    private static JobFieldData<Employer> employers = new JobFieldData<>();
+    private static JobFieldData<Location> locations = new JobFieldData<>();
+    private static JobFieldData<CoreCompetency> coreCompetencies = new JobFieldData<>();
+    private static JobFieldData<PositionType> positionTypes = new JobFieldData<>();
 
 
     private JobData() {
@@ -98,6 +98,23 @@ public class JobData {
         }
 
         throw new IllegalArgumentException("Cannot get field of type " + type);
+    }
+
+    //Homemade setters byID instead of some randomness
+    public void setEmployerById(Job job, int id){
+        job.setEmployer(employers.findById(id));
+    }
+
+    public void setLocationById(Job job, int id){
+        job.setLocation(locations.findById(id));
+    }
+
+    public void setCoreCompetencyById(Job job, int id){
+        job.setCoreCompetency(coreCompetencies.findById(id));
+    }
+
+    public void setPositionTypeById(Job job, int id){
+        job.setPositionType(positionTypes.findById(id));
     }
 
     public JobFieldData<Employer> getEmployers() {
