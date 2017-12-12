@@ -56,14 +56,15 @@ public class JobController {
             jobData.setEmployerById(createdJob, jobForm.getEmployerId());
             jobData.setLocationById(createdJob, jobForm.getLocationId());
             jobData.setCoreCompetencyById(createdJob, jobForm.getCoreCompetencyId());
-            jobData.setPositionTypeById(createdJob, jobForm.getCoreCompetencyId());
+            jobData.setPositionTypeById(createdJob, jobForm.getPositionTypeId());
 
             jobData.add(createdJob);
-            return "redirect:?job=" + createdJob.getId();
+            return "redirect:?id=" + createdJob.getId();
         }
 
         model.addAttribute(new JobForm());
-        return "";
+        model.addAttribute("message", "Name can't be empty.");
+        return "new-job";
 
     }
 }
